@@ -1,0 +1,16 @@
+@import 'src/scss/vars';
+
+.tab-myworkout {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+
+  .container {
+    align-items: center;
+
+    .workouts {
+      width     : 100%;
+      margin-top: 15px;
+    }
+  }
+}

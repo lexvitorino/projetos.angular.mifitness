@@ -1,0 +1,28 @@
+<app-stack>
+  <div class="back" [routerLink]="'/appTab/tabMyworkout'">
+    <img src="assets/images/icons/back.png" alt="Back">
+  </div>
+  <div>{{title}}</div>
+  <div class="button-icon" (click)="save()">
+    <img src="assets/images/icons/check-black.png" alt="Save">
+  </div>
+</app-stack>
+
+<div class="tab-myworkout-edit">
+  <div class="container">
+    <form autocomplete="off">
+      <input type="text" name="name" [(ngModel)]="data.name" autofocus placeholder="Qual o nome do treino?" />
+      <div class="exercises-area">
+        <div class="button button-secondary" (click)="onAddExercises()">Adicionar Exercício</div>
+        <div class="workouts">
+          <ng-container *ngFor="let item of data.exercises">
+            <app-exercise-item [item]="item" (edit)="onEditExercises($event)" (del)="onDelExercises($event)">
+            </app-exercise-item>
+          </ng-container>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-exercise-item-edit #exerciseItemEdit (save)="onSaveExercises($event)"></app-exercise-item-edit>

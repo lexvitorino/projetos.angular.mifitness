@@ -9,7 +9,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class WorkoutComponent implements OnInit {
 
   @Input() item: any;
+
+  @Input() showAdd: boolean = true;
+  @Input() showEdit: boolean = false;
+  @Input() showDel: boolean = false;
+
   @Output() add = new EventEmitter();
+  @Output() edit = new EventEmitter();
+  @Output() del = new EventEmitter();
 
   muscleGroups: Array<any> = [];
   included: boolean = false;
@@ -36,8 +43,15 @@ export class WorkoutComponent implements OnInit {
 
   onAdd() {
     this.included = !this.included;
-
     this.add.emit(this.item);
+  }
+
+  onEdit() {
+    this.edit.emit(this.item);
+  }
+
+  onDel() {
+    this.del.emit(this.item);
   }
 
 }

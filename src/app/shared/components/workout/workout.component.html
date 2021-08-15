@@ -1,15 +1,20 @@
 <div class="workout">
-  <div class="info">
-    <div class="title">{{item.name}}</div>
-    <div class="muscle-scroll">
-      <div class="muscle-groups" *ngFor="let m of muscleGroups">
-        <img [src]="imgMuscle(m)">
+  <a (click)="onEdit()">
+    <div class="info">
+      <div class="title">{{item.name}}</div>
+      <div class="muscle-scroll">
+        <div class="muscle-groups" *ngFor="let m of muscleGroups">
+          <img [src]="imgMuscle(m)">
+        </div>
       </div>
     </div>
-  </div>
-  <div class="actions">
-    <div class="action-button" (click)="onAdd()">
+  </a>
+  <div class="actions" *ngIf="showAdd || showEdit">
+    <div class="action-button" (click)="onAdd()" *ngIf="showAdd">
       <img [src]="imgAction" />
+    </div>
+    <div class="action-button" (click)="onDel()" *ngIf="showDel">
+      <img src="assets/images/icons/trash-black.png" />
     </div>
   </div>
 </div>

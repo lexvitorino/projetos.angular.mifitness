@@ -1,0 +1,45 @@
+<div id="exercise-edit" class="exercise-edit">
+  <div class="content">
+    <div class="modal">
+      <a class="closebtn" (click)="closeModal()">
+        <img src="assets/images/icons/botao-fechar.svg">
+      </a>
+      <div id="exercise-modal" class="area opacity">
+        <div class="body">
+          <form autocomplete="off">
+            <label>Músculo do foco?</label>
+            <div #muscleScroll class="muscle-scroll">
+              <div #muscleButton class="muscle-button" *ngFor="let muscle of muscles" (click)="data.muscle = muscle"
+                [ngClass]="{'active': muscle === data.muscle}">
+                <img [src]="getMuscle(muscle)">
+              </div>
+            </div>
+
+            <label>Qual o nome do exercício?</label>
+            <input type="text" name="name" [(ngModel)]="data.name" />
+
+            <div class="row">
+              <div class="group">
+                <label>Séries?</label>
+                <input type="number" name="sets" [(ngModel)]="data.sets" />
+              </div>
+
+              <div class="group">
+                <label>Repetições?</label>
+                <input type="number" name="reps" [(ngModel)]="data.reps" />
+              </div>
+
+              <div class="group">
+                <label>Carga?</label>
+                <input type="number" name="load" [(ngModel)]="data.load" />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="footer">
+          <div class="button button-secondary" (click)="onSave()">Salvar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { Treino } from './../models/treino.interface';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -82,20 +83,29 @@ export class StorageService {
   }
 
   get myWorkouts(): any[] {
-    if (!localStorage.getItem('mif.myWorkouts')) return [];
+    if (!localStorage.getItem('mif.myWorkouts')) return [] as Treino[];
     return JSON.parse(localStorage.getItem('mif.myWorkouts'));
   }
 
-  addWorkout(item) {
+  addWorkout(workout: Treino) {
     let myWorkouts = [...this.myWorkouts];
-    if (myWorkouts.findIndex(i => i.id === item.id) < 0) {
-      myWorkouts.push(item);
+    if (myWorkouts.findIndex(i => i.id === workout.id) < 0) {
+      myWorkouts.push(workout);
     }
+    console.log(myWorkouts);
     localStorage.setItem('mif.myWorkouts', JSON.stringify(myWorkouts));
   }
 
-  delWorkout(item) {
-    let myWorkouts = this.myWorkouts.filter(i => i.id !== item.id);
+  editWorkout(workout: Treino) {
+    let myWorkouts = [...this.myWorkouts];
+    const idx = myWorkouts.findIndex(i => i.id === workout.id);
+    myWorkouts[idx] = workout;
+    console.log(myWorkouts);
+    localStorage.setItem('mif.my  Workouts', JSON.stringify(myWorkouts));
+  }
+
+  delWorkout(workout: Treino) {
+    let myWorkouts = this.myWorkouts.filter(i => i.id !== workout.id) as Treino[];
     localStorage.setItem('mif.myWorkouts', JSON.stringify(myWorkouts));
   }
 

@@ -1,0 +1,25 @@
+<div class="exercise-item">
+  <a (click)="onEdit()">
+    <div class="area">
+      <div class="muscle">
+        <img [src]="imgMuscle()">
+      </div>
+      <div class="info">
+        <label class="name">{{item.name}}</label>
+        <div class="details">
+          <ng-container *ngIf="!item.load">
+            {{item.sets}} séries - {{item.reps}} rep
+          </ng-container>
+          <ng-container *ngIf="item.load">
+            {{item.sets}} séries - {{item.reps}} rep - {{item.load}} kg
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </a>
+  <div class="actions">
+    <div class="action-button" (click)="onDel()">
+      <img src="assets/images/icons/trash-black.png" />
+    </div>
+  </div>
+</div>

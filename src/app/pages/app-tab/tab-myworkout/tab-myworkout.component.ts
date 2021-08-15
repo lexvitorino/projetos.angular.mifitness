@@ -1,3 +1,5 @@
+import { StorageService } from './../../../services/storage.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,12 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabMyworkoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    public storage: StorageService,
+  ) { }
 
   ngOnInit() {
   }
 
-  onNext() {
+  onAddWorkout() {
+    this.router.navigate(['/appTab/tabMyworkoutEdit']);
+  }
+
+  onEditWorkout(item) {
+    this.router.navigate([`/appTab/tabMyworkoutEdit/${item.id}`]);
+  }
+
+  onDelWorkout(item) {
+    this.storage.delWorkout(item);
   }
 
 }
