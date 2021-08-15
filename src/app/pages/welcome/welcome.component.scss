@@ -1,0 +1,33 @@
+@import 'src/scss/vars';
+
+.wellcome {
+  height         : 100vh;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+
+  .container {
+    justify-content: space-between;
+    align-items    : center;
+
+    .text {
+      font-size: 22px;
+      color    : #333;
+    }
+
+    .image {
+      img {
+        width : 200px;
+        height: 200px;
+      }
+    }
+
+    .begin-config-area {
+      width: 80%;
+
+      .button {
+        height: 30px;
+      }
+    }
+  }
+}

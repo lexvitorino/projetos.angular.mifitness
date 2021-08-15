@@ -1,0 +1,71 @@
+@import 'src/scss/vars';
+
+.tab-home {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+
+  .container {
+    align-items: flex-start;
+
+    app-home-month-scroll {
+      margin-top: 15px;
+      width     : 100%;
+    }
+
+    app-home-day-scroll {
+      margin-top: 15px;
+      width     : 100%;
+    }
+
+    app-home-day-status {
+      width: 100%;
+    }
+
+    .legend {
+      margin-top: 30px;
+
+      .header {
+        color: $text-primary;
+      }
+
+      .item {
+        display       : flex;
+        flex-direction: row;
+        align-items   : center;
+        margin-top    : 5px;
+
+        .box {
+          width : 15px;
+          height: 15px;
+
+          &.hoje {
+            background-color: $hoje;
+          }
+
+          &.treino-feito {
+            background-color: $treino-feito;
+          }
+
+          &.treino-perdido {
+            background-color: $treino-perdido;
+          }
+
+          &.dia-descanso {
+            background-color: $dia-descanso;
+            opacity         : 0.2;
+          }
+
+          &.dia-futuro {
+            background-color: $dia-futuro;
+          }
+        }
+
+        .text {
+          margin-left: 5px;
+          color      : $text-primary;
+        }
+      }
+    }
+  }
+}

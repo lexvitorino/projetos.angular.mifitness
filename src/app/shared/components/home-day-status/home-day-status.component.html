@@ -1,0 +1,19 @@
+<div class="home-status">
+  <div class="triangulo"></div>
+  <div class="area">
+    <h1>{{titulo}}</h1>
+    <h2 *ngIf="!isDiaDescanso && !isFuturo && !isTreinoFeito && isHoje">{{subTitulo}}</h2>
+    <div class="button button-secondary mt-20" *ngIf="!isDiaDescanso && !isFuturo && isTreinoFeito"
+      (click)="onDelProgress()">
+      DESMARCAR
+    </div>
+    <div class="button button-secondary mt-20" *ngIf="!isDiaDescanso && !isFuturo && !isTreinoFeito && !isHoje"
+      (click)="onAddProgress()">
+      MARCAR COMO FEITO
+    </div>
+    <div class="button button-secondary mt-20" *ngIf="!isDiaDescanso && !isFuturo && !isTreinoFeito && isHoje"
+      (click)="onGoToWorkout()">
+      INICIAR TREINO
+    </div>
+  </div>
+</div>

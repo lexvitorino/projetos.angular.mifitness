@@ -1,0 +1,15 @@
+@import 'src/scss/vars';
+
+.starter-recommendations {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+
+  .container {
+    align-items: center;
+
+    .workouts {
+      width: 100%;
+    }
+  }
+}

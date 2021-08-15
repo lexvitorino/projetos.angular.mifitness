@@ -1,0 +1,40 @@
+<app-stack>
+  <div class="back" [routerLink]="'/starterName'">
+    <img src="assets/images/icons/back.png" alt="Back">
+  </div>
+  <div class="button" (click)="onNext()">
+    Próximo
+  </div>
+</app-stack>
+
+<div class="starter-dias">
+  <div class="container">
+    <div class="header">
+      <h1>Opa, <span>{{name}}</span>, tudo bem?</h1>
+      <p>Quais <span>dias da semana</span> você pretente treinar?</p>
+    </div>
+    <div class="dias-semana">
+      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(1)}" (click)="onToggleDay(1)">
+        Segunda
+      </div>
+      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(2)}" (click)="onToggleDay(2)">
+        Terça
+      </div>
+      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(3)}" (click)="onToggleDay(3)">
+        Quarta
+      </div>
+      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(4)}" (click)="onToggleDay(4)">
+        Quinta
+      </div>
+      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(5)}" (click)="onToggleDay(5)">
+        Sexta
+      </div>
+      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(6)}" (click)="onToggleDay(6)">
+        Sabádo
+      </div>
+      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(0)}" (click)="onToggleDay(0)">
+        Domingo
+      </div>
+    </div>
+  </div>
+</div>

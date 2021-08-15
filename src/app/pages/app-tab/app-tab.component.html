@@ -1,0 +1,16 @@
+<div class="app-bar">
+  <router-outlet></router-outlet>
+  <div class="footer">
+    <div class="tab home" [routerLink]="'/appTab/tabHome'" routerLinkActive="active-tab-link">
+      <img src="assets/images/icons/home.png" alt="Home">
+      <span>Início</span>
+    </div>
+    <div class="tab workout" [routerLink]="'/appTab/tabWorkout'" routerLinkActive="active-tab-link">
+      <img class="img-big" src="assets/images/icons/dumbbell.png" alt="Workout">
+    </div>
+    <div class="tab my-workout" [routerLink]="'/appTab/tabMyworkout'" routerLinkActive="active-tab-link">
+      <img src="assets/images/icons/myworkouts.png" alt="MyWorkout">
+      <span>Meus Treinos</span>
+    </div>
+  </div>
+</div>

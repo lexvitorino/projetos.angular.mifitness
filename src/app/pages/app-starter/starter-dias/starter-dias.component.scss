@@ -1,0 +1,23 @@
+@import 'src/scss/vars';
+
+.starter-dias {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+
+  .container {
+    align-items: center;
+
+    .dias-semana {
+      display        : flex;
+      flex-wrap      : wrap;
+      justify-content: space-around;
+      margin-top     : 30px;
+
+      .button {
+        width        : 70px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<app-stack>
+  <div class="back" [routerLink]="'/welcome'">
+    <img src="assets/images/icons/back.png" alt="Back">
+  </div>
+  <div class="button" (click)="onNext()">
+    Próximo
+  </div>
+</app-stack>
+
+<div class="starter-name">
+  <div class="container">
+    <form autocomplete="off">
+      <label for="name">Qual é o seu nome?</label>
+      <input #iptName type="text" name="name" [(ngModel)]="name" autofocus (blur)="onBlur()"/>
+    </form>
+  </div>
+</div>

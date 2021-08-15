@@ -1,0 +1,73 @@
+@import 'src/scss/vars';
+
+.day-scroll {
+  display        : flex;
+  justify-content: space-between;
+  flex-wrap      : nowrap;
+  overflow       : auto;
+  height         : 45px;
+
+  .day-button {
+    flex            : 0 0 auto;
+    display         : flex;
+    margin-right    : 10px;
+    height          : 30px;
+    width           : 30px;
+    background-color: $bg-primary;
+    border-radius   : 15px;
+    justify-content : center;
+    align-items     : center;
+
+    .day-text {}
+
+    &.hoje {
+      background-color: $hoje;
+
+      &:hover {
+        background-color: $hoje-hover;
+      }
+    }
+
+    &.treino-feito {
+      background-color: $treino-feito;
+
+      &:hover {
+        background-color: $treino-feito-hover;
+      }
+    }
+
+    &.treino-perdido {
+      background-color: $treino-perdido;
+
+      &:hover {
+        background-color: $treino-perdido-hover;
+      }
+    }
+
+    &.dia-descanso {
+      background-color: $dia-descanso;
+      opacity         : 0.2;
+
+      &:hover {
+        background-color: $dia-descanso-hover;
+      }
+    }
+
+    &.dia-futuro {
+      background-color: $dia-futuro;
+
+      &:hover {
+        background-color: $dia-futuro-hover;
+      }
+    }
+  }
+
+  .day-button-active {
+    background-color: $btn-primary;
+    color           : $text-secondary;
+
+    &:hover {
+      background-color: $btn-primary-hover;
+    }
+  }
+}

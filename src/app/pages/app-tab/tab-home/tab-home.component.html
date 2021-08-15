@@ -1,0 +1,50 @@
+<app-stack>
+  <div>Seu progresso diário</div>
+  <div class="button-icon" (click)="onNext()">
+    <img src="assets/images/icons/config.png" alt="" srcset="">
+  </div>
+</app-stack>
+
+<div class="tab-home">
+  <div class="container">
+
+    <app-home-month-scroll #homeMonthScrooll [inMonth]="selectedMonth" (outMonth)="onChangeMonth($event)"></app-home-month-scroll>
+    <app-home-day-scroll #homeDayScrooll [inMonth]="selectedMonth" [inDay]="selectedDay" (outDay)="onChangeDay($event)">
+    </app-home-day-scroll>
+    <app-home-day-status (addProgress)="onAddProgress($event)" (delProgress)="onDelProgress($event)"></app-home-day-status>
+
+    <div class="legend">
+      <div class="header">Legenda</div>
+      <div class="item">
+        <div class="box hoje"></div>
+        <div class="text">
+          Hoje
+        </div>
+      </div>
+      <div class="item">
+        <div class="box treino-feito"></div>
+        <div class="text">
+          Treino feito
+        </div>
+      </div>
+      <div class="item">
+        <div class="box treino-perdido"></div>
+        <div class="text">
+          Treino perdido
+        </div>
+      </div>
+      <div class="item">
+        <div class="box dia-descanso"></div>
+        <div class="text">
+          Dia de descanso
+        </div>
+      </div>
+      <div class="item">
+        <div class="box dia-futuro"></div>
+        <div class="text">
+          Dia futuro
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

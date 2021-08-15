@@ -1,0 +1,6 @@
+<div #dayScroll class="day-scroll">
+  <div #dayButton [class]="formatDate(day)" [ngClass]="{'day-button-active': selected === day}"
+    (click)="onSelected(day)" *ngFor="let day of days">
+    <div class="day-text">{{day}}</div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div #monthScroll class="month-scroll" >
+  <div #monthButton class="month-button" [ngClass]="{'month-button-active': selected?.id === month.id}"
+    (click)="onSelected(month)"
+    *ngFor="let month of months">
+    <div class="month-text">{{month.description}}</div>
+  </div>
+</div>

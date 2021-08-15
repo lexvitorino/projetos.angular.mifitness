@@ -1,0 +1,15 @@
+<div class="workout">
+  <div class="info">
+    <div class="title">{{item.name}}</div>
+    <div class="muscle-scroll">
+      <div class="muscle-groups" *ngFor="let m of muscleGroups">
+        <img [src]="imgMuscle(m)">
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="action-button" (click)="onAdd()">
+      <img [src]="imgAction" />
+    </div>
+  </div>
+</div>

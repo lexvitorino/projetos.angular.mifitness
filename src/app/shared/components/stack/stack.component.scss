@@ -1,0 +1,13 @@
+.stack {
+  display        : flex;
+  justify-content: space-between;
+  align-items    : center;
+  padding        : 20px 20px;
+}
+
+.stack-line {
+  width           : 95%;
+  height          : 1px;
+  background-color: #ddd;
+  margin          : 0 5px;
+}
