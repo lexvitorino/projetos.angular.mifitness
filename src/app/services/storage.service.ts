@@ -29,6 +29,19 @@ export class StorageService {
     return JSON.parse(localStorage.getItem('mif.dailyProgress'))
   }
 
+  delProgress(date) {
+    const dailyPregress = this.dailyProgress.filter(c => c != date);
+    this.setDailyProgress(dailyPregress);
+  }
+
+  addProgress(date) {
+    const dailyPregress = this.dailyProgress;
+    if (!dailyPregress.includes(date)) {
+      dailyPregress.push(date);
+    }
+    this.setDailyProgress(dailyPregress);
+  }
+
   setLevel(level: string) {
     localStorage.setItem('mif.level', level);
   }
@@ -63,6 +76,41 @@ export class StorageService {
     return this.workoutDays.includes(day);
   }
 
+  get myWorkouts(): any[] {
+    if (!localStorage.getItem('mif.myWorkouts')) return [] as Treino[];
+    return JSON.parse(localStorage.getItem('mif.myWorkouts'));
+  }
+
+  addWorkout(workout: Treino) {
+    let myWorkouts = [...this.myWorkouts];
+    if (myWorkouts.findIndex(i => i.id === workout.id) < 0) {
+      myWorkouts.push(workout);
+    }
+    localStorage.setItem('mif.myWorkouts', JSON.stringify(myWorkouts));
+  }
+
+  editWorkout(workout: Treino) {
+    let myWorkouts = [...this.myWorkouts];
+    const idx = myWorkouts.findIndex(i => i.id === workout.id);
+    myWorkouts[idx] = workout;
+    localStorage.setItem('mif.my  Workouts', JSON.stringify(myWorkouts));
+  }
+
+  delWorkout(workout: Treino) {
+    let myWorkouts = this.myWorkouts.filter(i => i.id !== workout.id) as Treino[];
+    localStorage.setItem('mif.myWorkouts', JSON.stringify(myWorkouts));
+  }
+
+  setLastWorkout(id: number) {
+    localStorage.setItem('mif.lastWorkout', id.toString());
+  }
+
+  get last(): Treino {
+    const id = +localStorage.getItem('mif.lastWorkout');
+    if (!id) return null;
+    return this.myWorkouts.find(c => +c.id === +id);
+  }
+
   get funnyPhrase(): string {
     switch (this.workoutDays.length) {
       case 1:
@@ -80,33 +128,6 @@ export class StorageService {
       case 7:
         return "Wooow! Todo dia?! WTF!?";
     }
-  }
-
-  get myWorkouts(): any[] {
-    if (!localStorage.getItem('mif.myWorkouts')) return [] as Treino[];
-    return JSON.parse(localStorage.getItem('mif.myWorkouts'));
-  }
-
-  addWorkout(workout: Treino) {
-    let myWorkouts = [...this.myWorkouts];
-    if (myWorkouts.findIndex(i => i.id === workout.id) < 0) {
-      myWorkouts.push(workout);
-    }
-    console.log(myWorkouts);
-    localStorage.setItem('mif.myWorkouts', JSON.stringify(myWorkouts));
-  }
-
-  editWorkout(workout: Treino) {
-    let myWorkouts = [...this.myWorkouts];
-    const idx = myWorkouts.findIndex(i => i.id === workout.id);
-    myWorkouts[idx] = workout;
-    console.log(myWorkouts);
-    localStorage.setItem('mif.my  Workouts', JSON.stringify(myWorkouts));
-  }
-
-  delWorkout(workout: Treino) {
-    let myWorkouts = this.myWorkouts.filter(i => i.id !== workout.id) as Treino[];
-    localStorage.setItem('mif.myWorkouts', JSON.stringify(myWorkouts));
   }
 
 }

@@ -1,3 +1,6 @@
+import { Treino } from './../../../models/treino.interface';
+import { StorageService } from './../../../services/storage.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,12 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabWorkoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    public storage: StorageService,
+  ) { }
 
   ngOnInit() {
   }
 
-  onNext() {
+  onGo(workout) {
+    this.router.navigate([`/appTab/tabWorkoutChecklist/${workout.id}`]);
   }
 
 }

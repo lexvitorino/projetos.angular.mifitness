@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "appo": {
+    "mifitness": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -36,7 +36,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/appo",
+            "outputPath": "dist/mifitness",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -85,18 +85,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "appo:build"
+            "browserTarget": "mifitness:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "appo:build:production"
+              "browserTarget": "mifitness:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "appo:build"
+            "browserTarget": "mifitness:build"
           }
         },
         "test": {
@@ -134,15 +134,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "appo:serve"
+            "devServerTarget": "mifitness:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "appo:serve:production"
+              "devServerTarget": "mifitness:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "appo"
+  "defaultProject": "mifitness"
 }

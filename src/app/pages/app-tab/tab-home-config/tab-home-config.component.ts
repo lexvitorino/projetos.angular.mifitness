@@ -23,8 +23,9 @@ export class TabHomeConfigComponent implements OnInit {
     this.name = this.storage.name;
   }
 
-  onNext() {
-    this.router.navigate(['/appTab/tabHomeConfig']);
+  onReset() {
+    this.storage.clear();
+    this.router.navigate(['/']);
   }
 
   onBlur() {

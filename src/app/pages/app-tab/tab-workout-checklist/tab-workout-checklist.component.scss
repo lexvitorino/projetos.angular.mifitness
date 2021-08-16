@@ -1,0 +1,87 @@
+@import 'src/scss/vars';
+
+.tab-workout-checklist {
+  height             : 100vh;
+  background-image   : url("./../../../../assets/images/fitness.jpg");
+  background-position: center;
+  background-repeat  : no-repeat;
+  background-size    : cover;
+
+  .fundo {
+    display         : flex;
+    justify-content : center;
+    width           : 100%;
+    height          : 100%;
+    background-color: rgba(1, 59, 14, 0.9);
+
+    .container {
+      flex-direction: column;
+      height        : 100%;
+
+      .header {
+        display        : flex;
+        justify-content: space-between;
+        align-items    : center;
+
+        .title {
+          color    : $text-secondary;
+          font-size: 20px;
+        }
+
+        .close {
+          color    : $text-secondary;
+          font-size: 22px;
+        }
+      }
+
+      .workouts {
+        overflow  : auto;
+        margin-top: 10px;
+
+        @media only screen and (max-height: 1366px) {
+          height: 1237px;
+        }
+
+        @media only screen and (max-height: 1024px) {
+          height: 900px;
+        }
+
+        @media only screen and (max-height: 823px) {
+          height: 698px;
+        }
+
+        @media only screen and (max-height: 812px) {
+          height: 686px;
+        }
+
+        @media only screen and (max-height: 736px) {
+          height: 611px;
+        }
+
+        @media only screen and (max-height: 731px) {
+          height: 606px;
+        }
+
+        @media only screen and (max-height: 720px) {
+          height: 592px;
+        }
+
+        @media only screen and (max-height: 667px) {
+          height: 542px;
+        }
+
+        @media only screen and (max-height: 653px) {
+          height: 526px;
+        }
+
+        @media only screen and (max-height: 640px) {
+          height: 516px;
+        }
+
+        @media only screen and (max-height: 568px) {
+          height: 442px;
+        }
+      }
+    }
+  }
+}

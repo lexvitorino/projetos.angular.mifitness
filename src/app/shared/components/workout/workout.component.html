@@ -9,12 +9,15 @@
       </div>
     </div>
   </a>
-  <div class="actions" *ngIf="showAdd || showEdit">
+  <div class="actions" *ngIf="showAdd || showEdit || showGo">
     <div class="action-button" (click)="onAdd()" *ngIf="showAdd">
       <img [src]="imgAction" />
     </div>
     <div class="action-button" (click)="onDel()" *ngIf="showDel">
       <img src="assets/images/icons/trash-black.png" />
+    </div>
+    <div class="action-button" (click)="onGo()" *ngIf="showGo">
+      <img src="assets/images/icons/play-black.png" />
     </div>
   </div>
 </div>

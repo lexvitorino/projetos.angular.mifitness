@@ -1,0 +1,29 @@
+<div class="checklist-exercise-item">
+  <div class="area">
+    <div class="count">
+      {{index}}.
+    </div>
+    <div class="muscle">
+      <img [src]="imgMuscle()">
+    </div>
+    <div class="info">
+      <label class="name">{{item.name}}</label>
+      <div class="details">
+        <ng-container *ngIf="!item.load">
+          {{item.sets}} séries - {{item.reps}} rep
+        </ng-container>
+        <ng-container *ngIf="item.load">
+          {{item.sets}} séries - {{item.reps}} rep - {{item.load}} kg
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="action-button" (click)="onCheck(false)" *ngIf="item.done">
+      <img src="assets/images/icons/check-white.png" />
+    </div>
+    <div class="action-button" (click)="onCheck(true)" *ngIf="!item.done">
+      <div class="undone"></div>
+    </div>
+  </div>
+</div>

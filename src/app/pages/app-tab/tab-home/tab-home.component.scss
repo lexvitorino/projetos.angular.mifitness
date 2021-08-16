@@ -23,17 +23,16 @@
     }
 
     .legend {
-      margin-top: 30px;
 
       .header {
-        color: $text-primary;
+        color        : $text-primary;
+        margin-bottom: 10px;
       }
 
       .item {
         display       : flex;
         flex-direction: row;
         align-items   : center;
-        margin-top    : 5px;
 
         .box {
           width : 15px;

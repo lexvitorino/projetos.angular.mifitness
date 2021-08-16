@@ -13,10 +13,12 @@ export class WorkoutComponent implements OnInit {
   @Input() showAdd: boolean = true;
   @Input() showEdit: boolean = false;
   @Input() showDel: boolean = false;
+  @Input() showGo: boolean = false;
 
   @Output() add = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Output() del = new EventEmitter();
+  @Output() go = new EventEmitter();
 
   muscleGroups: Array<any> = [];
   included: boolean = false;
@@ -52,6 +54,10 @@ export class WorkoutComponent implements OnInit {
 
   onDel() {
     this.del.emit(this.item);
+  }
+
+  onGo() {
+    this.go.emit(this.item);
   }
 
 }

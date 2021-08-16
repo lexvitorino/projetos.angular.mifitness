@@ -34,6 +34,55 @@
         border-top     : 1px solid $bg-default;
         margin-top     : 10px;
         padding-top    : 10px;
+
+        .workouts {
+          overflow  : auto;
+          margin-top: 10px;
+
+          @media only screen and (max-height: 1366px) {
+            height: 1101px;
+          }
+
+          @media only screen and (max-height: 1024px) {
+            height: 762px;
+          }
+
+          @media only screen and (max-height: 823px) {
+            height: 565px;
+          }
+
+          @media only screen and (max-height: 812px) {
+            height: 554px;
+          }
+
+          @media only screen and (max-height: 736px) {
+            height: 479px;
+          }
+
+          @media only screen and (max-height: 731px) {
+            height: 475px;
+          }
+
+          @media only screen and (max-height: 720px) {
+            height: 459px;
+          }
+
+          @media only screen and (max-height: 667px) {
+            height: 411px;
+          }
+
+          @media only screen and (max-height: 653px) {
+            height: 394px;
+          }
+
+          @media only screen and (max-height: 640px) {
+            height: 385px;
+          }
+
+          @media only screen and (max-height: 568px) {
+            height: 311px;
+          }
+        }
       }
     }
   }

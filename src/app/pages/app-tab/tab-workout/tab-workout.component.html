@@ -1,11 +1,22 @@
 <app-stack>
-  <div>Seu progresso diário</div>
-  <div class="button-icon" (click)="onNext()">
-    <img src="assets/images/icons/config.png" alt="" srcset="">
-  </div>
+  <div>Escolha seu Treino</div>
 </app-stack>
 
-<div class="tab-home">
+<div class="tab-workout">
   <div class="container">
+    <div class="workouts">
+      <div class="lastWorkout" *ngIf="!!storage.last">
+        <h4 class="title">Seu último treino</h4>
+        <app-workout [item]="storage.last" [showAdd]="false" [showEdit]="false" [showDel]="false" [showGo]="false">
+        </app-workout>
+      </div>
+      <div class="myWorkouts">
+        <h4 class="title">Escolha seu treino</h4>
+        <ng-container *ngFor="let item of storage.myWorkouts">
+          <app-workout [item]="item" [showAdd]="false" [showEdit]="false" [showDel]="false" [showGo]="true"
+            (go)="onGo($event)"></app-workout>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </div>

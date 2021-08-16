@@ -22,6 +22,7 @@ export class StarterNameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.name = this.storage.name;
   }
 
   onClick() {}

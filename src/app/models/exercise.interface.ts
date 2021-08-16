@@ -5,4 +5,5 @@ export interface Exercise {
   reps?: string;
   sets?: string;
   load?: string;
+  done?: boolean;
 }

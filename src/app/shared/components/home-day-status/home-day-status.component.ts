@@ -105,7 +105,7 @@ export class HomeDayStatusComponent implements OnInit, OnDestroy {
   }
 
   onGoToWorkout() {
-    this.router.navigate(['/workoutStack']);
+    this.router.navigate(['/appTab/tabWorkout']);
   }
 
   onAddProgress() {

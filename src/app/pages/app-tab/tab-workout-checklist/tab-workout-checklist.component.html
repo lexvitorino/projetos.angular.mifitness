@@ -1,0 +1,16 @@
+<div class="tab-workout-checklist">
+  <div class="fundo">
+    <div class="container">
+      <div class="header">
+        <label class="title">{{data?.name}}</label>
+        <label class="close" [routerLink]="['/appTab/tabWorkout']">X</label>
+      </div>
+      <div class="workouts">
+        <ng-container *ngFor="let item of data.exercises; let i = index">
+          <app-checklist-exercise [index]="i+1" [item]="item" (check)="onCheck($event)">
+          </app-checklist-exercise>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

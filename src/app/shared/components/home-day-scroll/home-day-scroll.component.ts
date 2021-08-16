@@ -44,12 +44,34 @@ export class HomeDayScrollComponent implements OnInit, AfterViewInit, OnChanges 
 
   scroolTo() {
     if (!this.dayScroll || !this.dayScroll.nativeElement || !this.selected) return;
+    const clientWidth = this.dayScroll.nativeElement.clientWidth;
 
-    const center = Math.round(this.dayScroll.nativeElement.clientWidth / 2);
+    const center = Math.round(this.dayScroll.nativeElement.clientWidth / 9);
     this.dayScroll.nativeElement.setAttribute('style', `padding: 0 ${center}px`)
 
     const el = this.dayButton.find(c => +(c.nativeElement.innerText) === this.selected);
-    const position = el.nativeElement.offsetLeft - 355;
+
+    let position = el.nativeElement.offsetLeft;
+    if (clientWidth <= 224) {
+      position = position - 172;
+    } else if (clientWidth <= 256) {
+      position = position - 173;
+    } else if (clientWidth <= 288) {
+      position = position - 198;
+    } else if (clientWidth <= 300) {
+      position = position - 205;
+    } else if (clientWidth <= 329) {
+      position = position - 228;
+    } else if (clientWidth <= 331) {
+      position = position - 229;
+    } else if (clientWidth <= 432) {
+      position = position - 288;
+    } else if (clientWidth <= 614) {
+      position = position - 436;
+    } else if (clientWidth <= 819) {
+      position = position - 587;
+    }
+
     this.dayScroll.nativeElement.scrollTo(position + center, 0);
   }
 

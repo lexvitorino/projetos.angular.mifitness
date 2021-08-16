@@ -47,17 +47,12 @@ export class TabHomeComponent implements AfterContentInit {
   }
 
   onDelProgress(date) {
-    const dailyPregress = this.storage.dailyProgress.filter(c => c != date);
-    this.storage.setDailyProgress(dailyPregress);
+    this.storage.delProgress(date);
     this.atualizaStatus();
   }
 
   onAddProgress(date) {
-    const dailyPregress = this.storage.dailyProgress;
-    if (!dailyPregress.includes(date)) {
-      dailyPregress.push(date);
-    }
-    this.storage.setDailyProgress(dailyPregress);
+    this.storage.addProgress(date);
     this.atualizaStatus();
   }
 

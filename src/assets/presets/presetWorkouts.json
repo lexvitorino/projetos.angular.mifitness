@@ -1,24 +1,37 @@
 [
   {
-    "id":"123",
-    "name":"Treino Iniciante A",
+    "id":"1",
+    "name":"Treino A",
     "exercises":[
-      {"id":1, "name":"Supino Inclinado", "muscle":"chest", "sets":"3", "reps":"10", "load":"20"},
-      {"id":2, "name":"Ex 2", "muscle":"biceps", "sets":"2", "reps":"12", "load":"10"}
+      {"id":1, "name":"Remada Maquina Aberta", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":2, "name":"Tríceps Pulley", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":3, "name":"Cadeira Abdutora", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":4, "name":"Elevação Lateral com Halteres", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":5, "name":"Cadeira Extensora", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":6, "name":"Panturrilha no Degau", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":7, "name":"Prancha Isométrica Solo", "muscle":"chest", "sets":"3", "reps":"15", "load":null}
     ]
   },
   {
-    "id":"456",
-    "name":"Treino Iniciante B",
+    "id":"2",
+    "name":"Treino B",
     "exercises":[
-      {"id":1, "name":"Supino Inclinado", "muscle":"chest", "sets":"3", "reps":"10", "load":"20"}
-    ]
-  },
-  {
-    "id":"645",
-    "name":"Treino Iniciante C",
-    "exercises":[
-      {"id":1, "name":"Supino Inclinado", "muscle":"chest", "sets":"3", "reps":"10", "load":"20"}
+      {"id":1, "name":"Supino Reto Maquina", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":2, "name":"Leg Press Horizontal", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":3, "name":"Rosca Martelo com Halteres", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":4, "name":"Cadeira Adutora", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":5, "name":"Elevação Frontal com Halteres", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":6, "name":"Cadeira Flexora", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":7, "name":"Tibial no Leg Press", "muscle":"chest", "sets":"3", "reps":"15", "load": "80"},
+      {"id":8, "name":"Abdominais Curto no Solo", "muscle":"chest", "sets":"3", "reps":"15", "load":null},
+      {"id":1, "name":"Supino Reto Maquina", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":2, "name":"Leg Press Horizontal", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":3, "name":"Rosca Martelo com Halteres", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":4, "name":"Cadeira Adutora", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":5, "name":"Elevação Frontal com Halteres", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":6, "name":"Cadeira Flexora", "muscle":"chest", "sets":"3", "reps":"15", "load":"20"},
+      {"id":7, "name":"Tibial no Leg Press", "muscle":"chest", "sets":"3", "reps":"15", "load": "80"},
+      {"id":8, "name":"Abdominais Curto no Solo", "muscle":"chest", "sets":"3", "reps":"15", "load":null}
     ]
   }
 ]

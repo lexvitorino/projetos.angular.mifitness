@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ChecklistExerciseComponent } from './../../shared/components/checklist-exercise/checklist-exercise.component';
 import { ExerciseItemEditComponent } from './../../shared/components/exercise-item-edit/exercise-item-edit.component';
 import { ExerciseItemComponent } from './../../shared/components/exercise-item/exercise-item.component';
 import { HomeDayScrollComponent } from './../../shared/components/home-day-scroll/home-day-scroll.component';
@@ -11,6 +12,7 @@ import { TabHomeConfigComponent } from './tab-home-config/tab-home-config.compon
 import { TabHomeComponent } from './tab-home/tab-home.component';
 import { TabMyworkoutEditComponent } from './tab-myworkout-edit/tab-myworkout-edit.component';
 import { TabMyworkoutComponent } from './tab-myworkout/tab-myworkout.component';
+import { TabWorkoutChecklistComponent } from './tab-workout-checklist/tab-workout-checklist.component';
 import { TabWorkoutComponent } from './tab-workout/tab-workout.component';
 
 @NgModule({
@@ -19,6 +21,7 @@ import { TabWorkoutComponent } from './tab-workout/tab-workout.component';
     TabHomeComponent,
     TabHomeConfigComponent,
     TabWorkoutComponent,
+    TabWorkoutChecklistComponent,
     TabMyworkoutEditComponent,
     TabMyworkoutComponent,
     HomeMonthScrollComponent,
@@ -26,6 +29,7 @@ import { TabWorkoutComponent } from './tab-workout/tab-workout.component';
     HomeDayStatusComponent,
     ExerciseItemComponent,
     ExerciseItemEditComponent,
+    ChecklistExerciseComponent
   ],
   imports: [
     SharedModule,
@@ -37,6 +41,7 @@ import { TabWorkoutComponent } from './tab-workout/tab-workout.component';
     HomeDayStatusComponent,
     ExerciseItemComponent,
     ExerciseItemEditComponent,
+    ChecklistExerciseComponent,
   ]
 })
 export class AppTabModule { }

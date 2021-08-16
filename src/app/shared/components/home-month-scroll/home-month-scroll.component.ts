@@ -50,12 +50,35 @@ export class HomeMonthScrollComponent implements AfterViewInit, OnChanges {
 
   scroolTo() {
     if (!this.monthScroll || !this.monthScroll.nativeElement || !this.selected) return;
+    const clientWidth = this.monthScroll.nativeElement.clientWidth;
 
-    const center = Math.round(this.monthScroll.nativeElement.clientWidth / 2);
+
+    const center = Math.round(clientWidth / 3);
     this.monthScroll.nativeElement.setAttribute('style', `padding: 0 ${center}px`)
 
     const el = this.monthButton.find(c => c.nativeElement.innerText === this.selected.description);
-    const position = el.nativeElement.offsetLeft - 145;
+
+    let position = el.nativeElement.offsetLeft;
+    if (clientWidth <= 224) {
+      position = position - 112;
+    } else if (clientWidth <= 256) {
+      position = position - 122;
+    } else if (clientWidth <= 288) {
+      position = position - 138;
+    } else if (clientWidth <= 300) {
+      position = position - 141;
+    } else if (clientWidth <= 329) {
+      position = position - 154;
+    } else if (clientWidth <= 331) {
+      position = position - 158;
+    } else if (clientWidth <= 432) {
+      position = position - 228;
+    } else if (clientWidth <= 664) {
+      position = position - 340;
+    } else if (clientWidth <= 819) {
+      position = position - 465;
+    }
+
     this.monthScroll.nativeElement.scrollTo(position, 0);
   }
 
