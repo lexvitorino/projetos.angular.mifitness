@@ -23,15 +23,18 @@ export class AppActivate implements CanActivate, CanLoad {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
-    this.storage.getUser().then(snapshot => {
-      if (snapshot && snapshot.myWorkouts) {
-        if (!!this.storage.id && !!snapshot.myWorkouts) {
-          this.router.navigate(['/appTab']);
+    if (!!this.storage.id) {
+      this.storage.getUser().then(snapshot => {
+        if (snapshot && snapshot.myWorkouts) {
+          if (!!this.storage.id && !!snapshot.myWorkouts) {
+            this.router.navigate(['/appTab']);
+          }
+          return true;
         }
-        return true;
-      }
-      return false;
-    });
-    return false;
+        return false;
+      });
+    }
+
+    return true;
   }
 }

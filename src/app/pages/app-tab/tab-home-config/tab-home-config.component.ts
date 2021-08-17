@@ -22,7 +22,6 @@ export class TabHomeConfigComponent implements OnInit {
   async ngOnInit() {
     this.data = { name: "" };
     const snapshot = await this.storage.getUser();
-    console.log(snapshot);
     if (snapshot) {
       this.data = snapshot;
     }

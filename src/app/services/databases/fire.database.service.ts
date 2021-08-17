@@ -75,6 +75,10 @@ export class FireDatabaseService {
 
   getUser(force: boolean = false): Promise<User> {
 
+    if (!this.id) {
+      return;
+    }
+
     if (!!this.user && !force) {
       return of(this.user).toPromise();
     }

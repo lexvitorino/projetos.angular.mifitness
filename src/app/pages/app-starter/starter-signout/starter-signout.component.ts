@@ -1,3 +1,4 @@
+import { User } from './../../../models/user.interface';
 import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -47,11 +48,18 @@ export class StarterSignoutComponent implements OnInit {
     try {
       this.loading = true;
       const signIn = await this.storage.signOut();
+      this.storage.user = {} as User;
       this.storage.setId(signIn.user.uid);
       this.storage.setUserNameEEmail(this.name, this.email);
-      this.router.navigate(['/welcome'])
+      alert("Cadastro realizado com sucesso!");
+      this.router.navigate(['/starterDias']);
     } catch (error) {
-      alert("Verifique os dados e tente novamente!");
+      if (error.code === 'auth/email-already-in-use') {
+        alert("E-mail já cadastrado!");
+      } else {
+        alert("Verifique os dados e tente novamente!");
+        console.log(error);
+      }
     } finally {
       this.loading = false;
     }
