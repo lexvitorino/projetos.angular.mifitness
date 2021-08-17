@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyBcwdYpSiUltystqGGF9zCmJFl441d9_Zo",
-    authDomain: "mi7dev-64eb2.firebaseapp.com",
-    projectId: "mi7dev-64eb2",
-    storageBucket: "mi7dev-64eb2.appspot.com",
-    messagingSenderId: "121286181715",
-    appId: "1:121286181715:web:2c56165614364be45197a6"
+    apiKey: "AIzaSyCOBs9dHtcg4x-gyhSCn4RXzNqP_FuAyI4",
+    authDomain: "mifitness-ccfce.firebaseapp.com",
+    projectId: "mifitness-ccfce",
+    storageBucket: "mifitness-ccfce.appspot.com",
+    messagingSenderId: "402652831593",
+    appId: "1:402652831593:web:6aa219f100a0f2894ba7f8"
   }
 };

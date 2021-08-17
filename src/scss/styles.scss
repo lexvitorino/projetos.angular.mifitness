@@ -61,6 +61,11 @@ body {
       background-color: $btn-selected-hover;
     }
   }
+
+  &.button-ligth {
+    color           : $text-primary;
+    background-color: $bg-primary;
+  }
 }
 
 .button-selected {

@@ -1,5 +1,6 @@
+import { AppGuard } from './app.guard';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate, CanLoad } from '@angular/router';
 import { AppActivate } from './app.active';
 import { StarterDiasComponent } from './pages/app-starter/starter-dias/starter-dias.component';
 import { StarterNameComponent } from './pages/app-starter/starter-name/starter-name.component';
@@ -21,7 +22,7 @@ const routes: Routes = [
   { path: 'workout', component: TabWorkoutComponent },
   { path: 'workoutChecklist/:workout', component: TabWorkoutChecklistComponent },
   { path: 'starterRecommendations', component: StarterRecommendationsComponent },
-  { path: 'appTab', loadChildren: () => import('./pages/app-tab/app-tab.module').then(mod => mod.AppTabModule) },
+  { path: 'appTab', loadChildren: () => import('./pages/app-tab/app-tab.module').then(mod => mod.AppTabModule), canLoad: [AppGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'welcome' },
   { path: '**', component: NotFoundComponent },
 ];

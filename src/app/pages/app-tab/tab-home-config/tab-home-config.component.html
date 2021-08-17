@@ -56,6 +56,10 @@
         <div class="button" (click)="onReset()">
           Resetar Tudo
         </div>
+
+        <div class="button button-ligth" [routerLink]="'/starterName'" (click)="storage.clearLocal()">
+          Sair
+        </div>
       </div>
     </form>
   </div>

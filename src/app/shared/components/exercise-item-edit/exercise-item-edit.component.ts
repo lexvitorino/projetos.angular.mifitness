@@ -54,10 +54,7 @@ export class ExerciseItemEditComponent implements OnInit {
       alert("Repetições não informada");
       return;
     }
-    else if (!this.data.load || +this.data.load === 0) {
-      alert("Carga não informada");
-      return;
-    }
+
     this.save.emit(this.data);
   }
 

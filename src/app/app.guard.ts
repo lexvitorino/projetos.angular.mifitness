@@ -26,6 +26,11 @@ export class AppGuard implements CanActivate, CanLoad {
   }
 
   private verificarAcesso() {
+    if (!this.storage.id) {
+      alert("Seu login expirou, você será redirecionado!");
+      this.router.navigate(['/starterName']);
+      return false;
+    }
     return true;
   }
 }

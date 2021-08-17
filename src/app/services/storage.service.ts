@@ -1,3 +1,4 @@
+import { User } from './../models/user.interface';
 import { Injectable } from '@angular/core';
 import { FireDatabaseService } from './databases/fire.database.service';
 
@@ -20,6 +21,10 @@ export class StorageService extends FireDatabaseService {
 
   isAdvanced(level: string): boolean {
     return level === 'advanced';
+  }
+
+  clearLocal() {
+    localStorage.clear();
   }
 
 }

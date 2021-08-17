@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppActivate implements CanActivate, CanLoad {
+
   constructor(
     private storage: StorageService,
     private router: Router
@@ -22,9 +23,15 @@ export class AppActivate implements CanActivate, CanLoad {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
-    /*if (!!this.storage.id && !!this.storage.workoutDays) {
-      this.router.navigate(['/appTab']);
-    }*/
-    return true;
+    this.storage.getUser().then(snapshot => {
+      if (snapshot && snapshot.myWorkouts) {
+        if (!!this.storage.id && !!snapshot.myWorkouts) {
+          this.router.navigate(['/appTab']);
+        }
+        return true;
+      }
+      return false;
+    });
+    return false;
   }
 }

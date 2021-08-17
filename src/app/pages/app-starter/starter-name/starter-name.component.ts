@@ -37,17 +37,31 @@ export class StarterNameComponent implements OnInit {
 
     try {
       this.loading = true;
+
       const signIn = await this.storage.signIn();
+
       this.storage.setId(signIn.user.uid);
 
-      const snapshot = await this.storage.getUser();
+      const snapshot = await this.storage.getUser(true);
       if (snapshot && snapshot.name) {
         this.storage.setName(snapshot.name);
       }
 
-      this.router.navigate(['/starterDias'])
+      if (!snapshot.days || snapshot.days.length === 0) {
+        this.router.navigate(['/starterDias'])
+      } else if (!snapshot.level) {
+        this.router.navigate(['/starterNivel'])
+      } else if (!snapshot.myWorkouts || snapshot.myWorkouts.length === 0) {
+        this.router.navigate(['/starterRecommendations'])
+      } else {
+        this.router.navigate(['/appTab']);
+      }
     } catch (error) {
-      alert("Verifique os dados e tente novamente!");
+      if (error.code === "auth/user-not-found") {
+        alert("Usuário não existe!");
+      } else {
+        alert("Verifique os dados e tente novamente!");
+      }
     } finally {
       this.loading = false;
     }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Cloneable } from '../cloneable .service';
 import { Treino } from './../../models/treino.interface';
 import { User } from './../../models/user.interface';
 
@@ -10,6 +12,8 @@ import { User } from './../../models/user.interface';
   providedIn: 'root'
 })
 export class FireDatabaseService {
+
+  public user: User;
 
   private password = "123456";
 
@@ -21,6 +25,15 @@ export class FireDatabaseService {
   clear({ name, email }) {
     this.db.collection('users').doc(this.id).set({ name, email }).then(() => {
       localStorage.clear();
+    });
+  }
+
+  stringify(data) {
+    return JSON.stringify(data, (key, value) => {
+      if (Array.isArray(value) && value.length === 0) {
+        return { ...value }; // Converts empty array with string properties into a POJO
+      }
+      return value;
     });
   }
 
@@ -60,7 +73,12 @@ export class FireDatabaseService {
     return this.db.collection('users').doc(this.id).set(data, { merge: true });
   }
 
-  getUser(): Promise<User> {
+  getUser(force: boolean = false): Promise<User> {
+
+    if (!!this.user && !force) {
+      return of(this.user).toPromise();
+    }
+
     return this.db.collection('users').doc(this.id).get()
       .pipe(
         map((res: any) => {
@@ -114,23 +132,29 @@ export class FireDatabaseService {
             lastWorkout = res.data().lastWorkout ? +atob(res.data().lastWorkout) : 0;
           }
 
-          let user = {
+          this.user = {
             name, email, level, days, myWorkouts, dailyProgress, lastWorkout
           } as User;
-          return user;
+
+          return this.user;
         })
       ).toPromise();
   }
 
   setUserNameEEmail(name: string, email: string) {
+    this.user.name = name;
+    this.user.email = email;
     return this.setUser({ 'name': btoa(name), 'email': btoa(email) });
   }
 
   setLevel(level: string): Promise<any> {
-    return this.setUser({ 'level': btoa(level) });
+    this.user.level = level;
+    const b4level = btoa(level);
+    return this.setUser({ 'level': b4level });
   }
 
   setWorkoutDays(days: number[]) {
+    this.user.days = days;
     return this.setUser({ 'days': btoa(this.stringify(days)) });
   }
 
@@ -138,23 +162,17 @@ export class FireDatabaseService {
     return this.db.collection('preset-workouts');
   }
 
-  stringify(data) {
-    return JSON.stringify(data, (key, value) => {
-      if (Array.isArray(value) && value.length === 0) {
-        return { ...value }; // Converts empty array with string properties into a POJO
-      }
-      return value;
-    });
-  }
-
   setMyWorkout(myWorkouts: Treino[]): Promise<any> {
+    this.user.myWorkouts = [];
     myWorkouts.forEach(workout => {
+      this.user.myWorkouts.push(Cloneable.deepCopy(workout));
       workout.exercises = btoa(this.stringify(workout.exercises));
     });
     return this.setUser({ 'myWorkouts': btoa(this.stringify(myWorkouts)) });
   }
 
   setDailyProgress(dailyProgress: string[]) {
+    this.user.dailyProgress = dailyProgress;
     return this.setUser({ 'dailyProgress': btoa(this.stringify(dailyProgress)) });
   }
 
