@@ -1,3 +1,5 @@
+import { User } from './../../../models/user.interface';
+import { Treino } from './../../../models/treino.interface';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { StorageService } from './../../../services/storage.service';
 
@@ -17,11 +19,20 @@ export class HomeDayScrollComponent implements OnInit, AfterViewInit, OnChanges 
 
   public selected: any;
   public days: Array<number> = [];
+  public data: User = {
+    dailyProgress: [] as string[],
+    days: [] as number[],
+  } as User;
 
   constructor(public storage: StorageService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.getDays();
+
+    const snapshot = await this.storage.getUser();
+    if (snapshot) {
+      this.data = snapshot;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -95,7 +106,7 @@ export class HomeDayScrollComponent implements OnInit, AfterViewInit, OnChanges 
 
     const thisDate = new Date(new Date().getFullYear(), this.inMonth, day);
 
-    if (this.storage.workoutDays.includes(thisDate.getDay())) {
+    if (this.data.days.includes(thisDate.getDay())) {
       if (thisDate.getTime() < today.getTime()) {
         const thisYear = thisDate.getFullYear();
         const thisMonth = thisDate.getMonth() + 1;
@@ -103,7 +114,7 @@ export class HomeDayScrollComponent implements OnInit, AfterViewInit, OnChanges 
         const thisDay = thisDate.getDate();
         const fDay = (thisDay < 10) ? `0${thisDay}` : thisDay;
         const dateFormat = `${thisYear}-${fMonth}-${fDay}`;
-        if (this.storage.dailyProgress.includes(dateFormat)) {
+        if (this.data.dailyProgress.includes(dateFormat)) {
           style = 'treino-feito';
         } else {
           style = 'treino-perdido';

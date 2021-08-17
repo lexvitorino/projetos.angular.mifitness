@@ -14,25 +14,25 @@
       <p>Quais <span>dias da semana</span> você pretente treinar?</p>
     </div>
     <div class="dias-semana">
-      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(1)}" (click)="onToggleDay(1)">
+      <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(1)}" (click)="onToggleDay(1)">
         Segunda
       </div>
-      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(2)}" (click)="onToggleDay(2)">
+      <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(2)}" (click)="onToggleDay(2)">
         Terça
       </div>
-      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(3)}" (click)="onToggleDay(3)">
+      <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(3)}" (click)="onToggleDay(3)">
         Quarta
       </div>
-      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(4)}" (click)="onToggleDay(4)">
+      <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(4)}" (click)="onToggleDay(4)">
         Quinta
       </div>
-      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(5)}" (click)="onToggleDay(5)">
+      <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(5)}" (click)="onToggleDay(5)">
         Sexta
       </div>
-      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(6)}" (click)="onToggleDay(6)">
+      <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(6)}" (click)="onToggleDay(6)">
         Sabádo
       </div>
-      <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(0)}" (click)="onToggleDay(0)">
+      <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(0)}" (click)="onToggleDay(0)">
         Domingo
       </div>
     </div>

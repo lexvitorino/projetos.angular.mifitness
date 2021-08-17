@@ -22,9 +22,9 @@ export class AppActivate implements CanActivate, CanLoad {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
-    if (!!this.storage.name) {
+    /*if (!!this.storage.id && !!this.storage.workoutDays) {
       this.router.navigate(['/appTab']);
-    }
+    }*/
     return true;
   }
 }

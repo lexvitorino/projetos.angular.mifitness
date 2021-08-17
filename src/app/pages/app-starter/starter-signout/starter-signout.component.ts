@@ -4,17 +4,19 @@ import { Router } from '@angular/router';
 import { StorageService } from './../../../services/storage.service';
 
 @Component({
-  selector: 'app-starter-name',
-  templateUrl: './starter-name.component.html',
-  styleUrls: ['./starter-name.component.scss']
+  selector: 'app-starter-signout',
+  templateUrl: './starter-signout.component.html',
+  styleUrls: ['./starter-signout.component.scss'],
+  providers: [TitleCasePipe]
 })
-export class StarterNameComponent implements OnInit {
+export class StarterSignoutComponent implements OnInit {
 
   public name: string;
   public email: string;
   public loading: boolean = false;
 
   constructor(
+    private titleCasePipe: TitleCasePipe,
     private router: Router,
     public storage: StorageService
   ) {
@@ -22,30 +24,32 @@ export class StarterNameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.email = this.storage.email;
   }
 
   onClick() { }
 
+  onBlur() {
+    this.name = this.titleCasePipe.transform(this.name);
+  }
+
   async onNext() {
-    if (!this.email) {
+    if (!this.name) {
+      alert("Eu sei que você tem um nome!");
+      return;
+    } else if (!this.email) {
       alert("Precisamos do seu email!");
       return;
     }
 
+    this.storage.setName(this.name);
     this.storage.setEmail(this.email);
 
     try {
       this.loading = true;
-      const signIn = await this.storage.signIn();
+      const signIn = await this.storage.signOut();
       this.storage.setId(signIn.user.uid);
-
-      const snapshot = await this.storage.getUser();
-      if (snapshot && snapshot.name) {
-        this.storage.setName(snapshot.name);
-      }
-
-      this.router.navigate(['/starterDias'])
+      this.storage.setUserNameEEmail(this.name, this.email);
+      this.router.navigate(['/welcome'])
     } catch (error) {
       alert("Verifique os dados e tente novamente!");
     } finally {

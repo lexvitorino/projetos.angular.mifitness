@@ -1,7 +1,8 @@
 import { Exercise } from "./exercise.interface";
 
 export interface Treino {
-  id?: number;
+  id?: string;
   name?: string;
-  exercises?: Exercise[]
+  check?: boolean;
+  exercises?: any;
 }

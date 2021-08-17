@@ -11,7 +11,7 @@ import { StorageService } from './../../../services/storage.service';
 })
 export class TabHomeConfigComponent implements OnInit {
 
-  public name: string;
+  public data: any;
 
   constructor(
     private titleCasePipe: TitleCasePipe,
@@ -19,26 +19,49 @@ export class TabHomeConfigComponent implements OnInit {
     public storage: StorageService,
   ) { }
 
-  ngOnInit(): void {
-    this.name = this.storage.name;
+  async ngOnInit() {
+    this.data = { name: "" };
+    const snapshot = await this.storage.getUser();
+    console.log(snapshot);
+    if (snapshot) {
+      this.data = snapshot;
+    }
+  }
+
+  onSave() {
+    if (confirm("Deseja realmente alterar dados?")) {
+      this.storage.setUser({
+        email: btoa(this.data.email),
+        name: btoa(this.data.name),
+        level: btoa(this.data.level),
+        days: btoa(this.storage.stringify(this.data.days)),
+      });
+    }
   }
 
   onReset() {
-    this.storage.clear();
-    this.router.navigate(['/']);
+    if (confirm("Deseja realmente limpar dados?")) {
+      this.storage.clear(this.data);
+      this.router.navigate(['/']);
+    }
   }
 
   onBlur() {
-    this.name = this.titleCasePipe.transform(this.name);
+    this.data.name = this.titleCasePipe.transform(this.data.name);
   }
 
   onToggleDay(day: number) {
-    let newWorkoutDays = [...this.storage.workoutDays];
-    if (!this.storage.workoutDayExist(day)) {
-      newWorkoutDays.push(day);
+    let days = [...this.data.days];
+    if (!this.workoutDayExist(day)) {
+      days.push(day);
     } else {
-      newWorkoutDays = newWorkoutDays.filter(f => f != day);
+      days = days.filter(f => f != day);
     }
-    this.storage.setWorkoutDays(newWorkoutDays);
+    this.data.days = days;
+  }
+
+  workoutDayExist(day): boolean {
+    if (!this.data.days) return false;
+    return this.data.days.includes(day);
   }
 }

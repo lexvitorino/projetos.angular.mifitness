@@ -1,6 +1,6 @@
 @import 'src/scss/vars';
 
-.starter-name {
+.signout {
   display        : flex;
   justify-content: center;
   align-items    : center;
@@ -30,6 +30,11 @@
         padding      : 5px;
         text-align   : center;
         color        : $text-primary;
+      }
+
+      .button {
+        margin-top: 15px;
+        width     : 90%;
       }
     }
   }

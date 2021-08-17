@@ -1,3 +1,4 @@
+import { Treino } from './../../../models/treino.interface';
 import { StorageService } from './../../../services/storage.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -9,12 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabMyworkoutComponent implements OnInit {
 
+  public myWorkouts: Treino[];
+
   constructor(
     private router: Router,
     public storage: StorageService,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.myWorkouts = [] as Treino[];
+    const snapshot = await this.storage.getUser();
+    if (snapshot) {
+      this.myWorkouts = snapshot.myWorkouts;
+    }
   }
 
   onAddWorkout() {
@@ -26,7 +34,8 @@ export class TabMyworkoutComponent implements OnInit {
   }
 
   onDelWorkout(item) {
-    this.storage.delWorkout(item);
+    this.myWorkouts = this.myWorkouts.filter(i => i.id !== item.id) as Treino[];
+    this.storage.setMyWorkout(this.myWorkouts);
   }
 
 }

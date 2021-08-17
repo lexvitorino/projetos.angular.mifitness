@@ -14,6 +14,7 @@ export class TabMyworkoutEditComponent implements OnInit {
 
   @ViewChild("exerciseItemEdit", { static: true }) exerciseItemEdit: ExerciseItemEditComponent;
 
+  public myWorkouts: Treino[];
   public workout: string;
   public data: Treino;
 
@@ -23,12 +24,18 @@ export class TabMyworkoutEditComponent implements OnInit {
     public storage: StorageService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.data = {} as Treino;
+    this.myWorkouts = [] as Treino[];
+
+    const snapshot = await this.storage.getUser();
+    if (snapshot) {
+      this.myWorkouts = snapshot.myWorkouts;
+    }
 
     this.workout = this.activatedRoute.snapshot.paramMap.get('workout');
     if (!!this.workout) {
-      this.data = this.storage.myWorkouts.find(c => c.id === this.workout);
+      this.data = this.myWorkouts.find(c => +c.id === +this.workout);
     }
   }
 
@@ -37,30 +44,48 @@ export class TabMyworkoutEditComponent implements OnInit {
   }
 
   save() {
-    if (this.data.exercises.length === 0) {
+    if (!this.data.exercises || this.data.exercises.length === 0) {
       alert("Você precisa ter pelo menos 1 exercício");
       return;
     }
 
     if (confirm("Deseja salvar treino?")) {
       if (!!this.data.id) {
-        this.storage.editWorkout(this.data);
+        this.editWorkout(this.data);
       } else {
-        this.storage.addWorkout(this.data);
+        this.addWorkout(this.data);
       }
+      this.storage.setMyWorkout(this.myWorkouts);
     }
 
     this.router.navigate(['/appTab/tabMyworkout']);
+  }
+
+  addWorkout(workout: Treino) {
+    let myWorkouts = [...this.myWorkouts];
+    if (myWorkouts.findIndex(i => i.id === workout.id) < 0) {
+      workout.id = (myWorkouts.length + 1).toString();
+      workout.check = true;
+      myWorkouts.push(workout);
+    }
+    this.myWorkouts = myWorkouts;
+  }
+
+  editWorkout(workout: Treino) {
+    let myWorkouts = [...this.myWorkouts];
+    const idx = myWorkouts.findIndex(i => i.id === workout.id);
+    myWorkouts[idx] = workout;
+    this.myWorkouts = myWorkouts;
   }
 
   onSaveExercises(data) {
     let exercises = !!this.data.exercises ? [...this.data.exercises] : [] as Exercise[];
     if (!!data.id) {
       const idx = exercises.findIndex(i => i.id === data.id);
-      exercises[idx] = Object.assign({}, data);
+      exercises[idx] = data;
     } else {
       data.id = exercises.length + 1;
-      exercises.push(Object.assign({}, data));
+      exercises.push(data);
     }
     this.data.exercises = exercises;
     this.exerciseItemEdit.closeModal();

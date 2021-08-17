@@ -1,7 +1,7 @@
+import { Treino } from './../../../models/treino.interface';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from './../../../services/storage.service';
-import { WorkoutsService } from './../../../services/workouts.service';
 
 @Component({
   selector: 'app-starter-recommendations',
@@ -10,32 +10,37 @@ import { WorkoutsService } from './../../../services/workouts.service';
 })
 export class StarterRecommendationsComponent implements OnInit {
 
-  workouts: Array<any> = [];
+  workouts: Treino[] = [];
+  myWorkouts: Treino[] = [];
 
   constructor(
     private router: Router,
     public storage: StorageService,
-    public workoutsService: WorkoutsService
   ) { }
 
-  ngOnInit() {
-    this.workoutsService.getPresetWorkouts().subscribe(resp => this.workouts = resp);
+  async ngOnInit() {
+    this.storage.getPresetWorkouts().valueChanges().subscribe(res => {
+      this.workouts = res;
+    })
   }
 
   get actionText(): string {
-    return this.storage.myWorkouts.length > 0 ? 'Concluir' : 'Ignorar';
+    return this.myWorkouts.length > 0 ? 'Concluir' : 'Ignorar';
   }
 
   onFinished() {
+    this.storage.setMyWorkout(this.myWorkouts);
     this.router.navigate(['/appTab']);
   }
 
-  onAddWorkout(item) {
-    if (this.storage.myWorkouts.findIndex(i => i.id === item.id) < 0) {
-      this.storage.addWorkout(item);
+  onWorkout(workout: Treino) {
+    let myWorkouts = [...this.myWorkouts];
+    if (myWorkouts.findIndex(i => i.id === workout.id) < 0) {
+      myWorkouts.push(workout);
     } else {
-      this.storage.delWorkout(item);
+      myWorkouts = this.myWorkouts.filter(i => i.id !== workout.id) as Treino[];
     }
+    this.myWorkouts = myWorkouts;
   }
 
 }

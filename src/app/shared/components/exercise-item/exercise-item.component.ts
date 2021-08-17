@@ -1,14 +1,12 @@
-import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Exercise } from './../../../models/exercise.interface';
-import { StorageService } from './../../../services/storage.service';
-import { ExerciseItemEditComponent } from './../exercise-item-edit/exercise-item-edit.component';
 
 @Component({
   selector: 'app-exercise-item',
   templateUrl: './exercise-item.component.html',
   styleUrls: ['./exercise-item.component.scss']
 })
-export class ExerciseItemComponent implements OnInit, AfterContentInit {
+export class ExerciseItemComponent {
 
   @Input() item: Exercise;
 
@@ -17,14 +15,7 @@ export class ExerciseItemComponent implements OnInit, AfterContentInit {
 
   included: boolean = false;
 
-  constructor(private storage: StorageService) { }
-
-  ngAfterContentInit(): void {
-  }
-
-  ngOnInit() {
-
-  }
+  constructor() { }
 
   imgMuscle(): string {
     return `assets/images/muscles/${this.item.muscle}.png`;

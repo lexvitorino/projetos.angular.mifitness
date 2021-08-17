@@ -3,48 +3,51 @@
     <img src="assets/images/icons/back.png" alt="Back">
   </div>
   <div>Configurações</div>
+  <div class="button-icon" (click)="onSave()">
+    <img src="assets/images/icons/check-black.png" alt="Save">
+  </div>
 </app-stack>
 
 <div class="tab-home-config">
   <div class="container">
     <form autocomplete="off">
       <label for="name">Digite seu nome?</label>
-      <input #iptName type="text" name="name" [(ngModel)]="name" autofocus (blur)="onBlur()" />
+      <input #iptName type="text" name="name" [(ngModel)]="data.name" autofocus (blur)="onBlur()" />
 
       <label for="name">Dias em que você treina?</label>
       <div class="dias-semana">
-        <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(1)}" (click)="onToggleDay(1)">
+        <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(1)}" (click)="onToggleDay(1)">
           S
         </div>
-        <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(2)}" (click)="onToggleDay(2)">
+        <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(2)}" (click)="onToggleDay(2)">
           T
         </div>
-        <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(3)}" (click)="onToggleDay(3)">
+        <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(3)}" (click)="onToggleDay(3)">
           Q
         </div>
-        <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(4)}" (click)="onToggleDay(4)">
+        <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(4)}" (click)="onToggleDay(4)">
           Q
         </div>
-        <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(5)}" (click)="onToggleDay(5)">
+        <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(5)}" (click)="onToggleDay(5)">
           S
         </div>
-        <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(6)}" (click)="onToggleDay(6)">
+        <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(6)}" (click)="onToggleDay(6)">
           S
         </div>
-        <div class="button button-default" [ngClass]="{'button-selected': storage.workoutDayExist(0)}" (click)="onToggleDay(0)">
+        <div class="button button-default" [ngClass]="{'button-selected': workoutDayExist(0)}" (click)="onToggleDay(0)">
           D
         </div>
       </div>
 
       <label for="name">Qual o seu nível?</label>
       <div class="nivel">
-        <div class="button button-default" [ngClass]="{'button-selected': storage.isBeginner}" (click)="storage.setLevel('beginner')">
-          Iniciante
+        <div class="button button-default" [ngClass]="{'button-selected': storage.isBeginner(data.level)}" (click)="data.level = 'beginner'">
+          Iniciante / Um frango
         </div>
-        <div class="button button-default" [ngClass]="{'button-selected': storage.isIntermediate}" (click)="storage.setLevel('intermediate')">
+        <div class="button button-default" [ngClass]="{'button-selected': storage.isIntermediate(data.level)}" (click)="data.level = 'intermediate'">
           Intermediário
         </div>
-        <div class="button button-default" [ngClass]="{'button-selected': storage.isAdvanced}" (click)="storage.setLevel('advanced')">
+        <div class="button button-default" [ngClass]="{'button-selected': storage.isAdvanced(data.level)}" (click)="data.level = 'advanced'">
           Avançado
         </div>
       </div>

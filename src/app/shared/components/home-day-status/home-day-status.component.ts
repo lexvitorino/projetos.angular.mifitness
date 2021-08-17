@@ -1,3 +1,4 @@
+import { User } from './../../../models/user.interface';
 import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from './../../../services/storage.service';
@@ -17,6 +18,9 @@ export class HomeDayStatusComponent implements OnInit, OnDestroy {
   public isDiaDescanso: boolean = false;
   public isFuturo: boolean = false;
   public timeLeft: string;
+  public data: User = {
+    days: []
+  };
 
   private month: number;
   private day: number;
@@ -27,7 +31,16 @@ export class HomeDayStatusComponent implements OnInit, OnDestroy {
     public storage: StorageService
   ) { }
 
-  ngOnInit() {
+  async getUser() {
+    const snapshot = await this.storage.getUser();
+    if (snapshot) {
+      this.data = snapshot;
+    }
+  }
+
+  async ngOnInit() {
+    await this.getUser();
+
     const timeFunction = () => {
       const now = Date.now();
 
@@ -69,7 +82,9 @@ export class HomeDayStatusComponent implements OnInit, OnDestroy {
     return `${thisYear}-${fMonth}-${fDay}`;
   }
 
-  refresh(month, day): void {
+  async refresh(month, day) {
+    await this.getUser();
+
     this.month = month;
     this.day = day;
 
@@ -89,16 +104,15 @@ export class HomeDayStatusComponent implements OnInit, OnDestroy {
     const thisDate = new Date(new Date().getFullYear(), month, day);
     if (thisDate.getTime() > today.getTime()) {
       this.isFuturo = true;
-    } else if (!this.storage.workoutDays.includes(thisDate.getDay())) {
+    } else if (!this.data.days.includes(thisDate.getDay())) {
       this.isDiaDescanso = true;
     } else {
-      if (this.storage.dailyProgress.includes(dateFormat)) {
+      if (this.data.dailyProgress.includes(dateFormat)) {
         this.isTreinoFeito = true;
       } else {
         this.isTreinoFeito = false;
       }
     }
-
     if (thisDate.getTime() === today.getTime()) {
       this.isHoje = true;
     }

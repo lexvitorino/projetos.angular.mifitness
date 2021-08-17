@@ -1,3 +1,4 @@
+import { Treino } from './../../../models/treino.interface';
 import { StorageService } from './../../../services/storage.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
@@ -21,9 +22,8 @@ export class WorkoutComponent implements OnInit {
   @Output() go = new EventEmitter();
 
   muscleGroups: Array<any> = [];
-  included: boolean = false;
 
-  constructor(private storage: StorageService) { }
+  constructor() { }
 
   ngOnInit() {
     this.muscleGroups = [];
@@ -39,12 +39,11 @@ export class WorkoutComponent implements OnInit {
   }
 
   get imgAction(): string {
-    this.included = this.storage.myWorkouts.findIndex(c => c.id === this.item.id) >= 0;
-    return `assets/images/icons/` + (!this.included ? "add.png" : "check-black.png");
+    return `assets/images/icons/` + (!this.item.check ? "add.png" : "check-black.png");
   }
 
   onAdd() {
-    this.included = !this.included;
+    this.item.check = !this.item.check;
     this.add.emit(this.item);
   }
 

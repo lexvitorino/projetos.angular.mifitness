@@ -1,3 +1,4 @@
+import { User } from './../../../models/user.interface';
 import { StorageService } from './../../../services/storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Treino } from './../../../models/treino.interface';
@@ -10,8 +11,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TabWorkoutChecklistComponent implements OnInit {
 
-  public workout: number;
-  public data: Treino;
+  public data: User;
+  public workout: Treino = {
+    exercises: []
+  };
 
   constructor(
     public router: Router,
@@ -19,18 +22,23 @@ export class TabWorkoutChecklistComponent implements OnInit {
     public storage: StorageService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.data = {} as Treino;
 
-    this.workout = +this.activatedRoute.snapshot.paramMap.get('workout');
-    if (!!this.workout) {
-      this.data = this.storage.myWorkouts.find(c => +c.id === +this.workout);
+    const snapshot = await this.storage.getUser();
+    if (snapshot) {
+      this.data = snapshot;
+    }
+
+    const id = +this.activatedRoute.snapshot.paramMap.get('workout');
+    if (!!id) {
+      this.workout = this.data.myWorkouts.find(c => +c.id === +id);
     }
 
   }
 
   onCheck(res) {
-    let exercises = [...this.data.exercises];
+    let exercises = [...this.workout.exercises];
     const index = exercises.findIndex(c => c.id === res.id);
     exercises[index].done = res.check;
 
@@ -38,11 +46,11 @@ export class TabWorkoutChecklistComponent implements OnInit {
   }
 
   private checkWorkout() {
-    if (this.data.exercises.every(c => c.done)) {
+    if (this.workout.exercises.every(c => c.done)) {
       alert('PARABÉNS, Você Finalizou!');
 
-      this.storage.addProgress(this.formatDate());
-      this.storage.setLastWorkout(this.data.id);
+      this.addProgress(this.formatDate());
+      this.storage.setLastWorkout(+this.workout.id);
 
       this.router.navigate(['/appTab/tabHome']);
     }
@@ -56,6 +64,14 @@ export class TabWorkoutChecklistComponent implements OnInit {
     const thisDay = thisDate.getDate();
     const fDay = (thisDay < 10) ? `0${thisDay}` : thisDay;
     return `${thisYear}-${fMonth}-${fDay}`;
+  }
+
+  addProgress(date) {
+    const dailyPregress = this.data.dailyProgress;
+    if (!dailyPregress.includes(date)) {
+      dailyPregress.push(date);
+    }
+    this.storage.setDailyProgress(dailyPregress);
   }
 
 }

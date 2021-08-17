@@ -1,0 +1,24 @@
+<app-stack>
+  <div class="back" [routerLink]="'/welcome'">
+    <img src="assets/images/icons/back.png" alt="Back">
+  </div>
+  <div>
+    Nova Conta
+  </div>
+</app-stack>
+
+<div class="signout">
+  <div class="container">
+    <form autocomplete="off">
+      <label for="name">Qual seu nome?</label>
+      <input type="text" name="name" [(ngModel)]="name" autofocus (blur)="onBlur()" />
+
+      <label for="name">Qual seu email?</label>
+      <input type="email" name="email" [(ngModel)]="email" />
+
+      <div class="button button-secondary" (click)="onNext()">
+        {{ loading ? 'Aguarde...' : 'Criar Conta' }}
+      </div>
+    </form>
+  </div>
+</div>

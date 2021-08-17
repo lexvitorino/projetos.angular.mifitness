@@ -3,15 +3,15 @@
     <img src="assets/images/icons/back.png" alt="Back">
   </div>
   <div class="button" (click)="onNext()">
-    Próximo
+    {{ loading ? 'Aguarde...' : 'Próximo' }}
   </div>
 </app-stack>
 
 <div class="starter-name">
   <div class="container">
     <form autocomplete="off">
-      <label for="name">Qual é o seu nome?</label>
-      <input #iptName type="text" name="name" [(ngModel)]="name" autofocus (blur)="onBlur()"/>
+      <label for="name">Qual seu email?</label>
+      <input type="email" name="email" [(ngModel)]="email"/>
     </form>
   </div>
 </div>

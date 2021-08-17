@@ -10,17 +10,17 @@
 <div class="starter-nivel">
   <div class="container">
     <div class="header">
-      <h1>{{storage.funnyPhrase}}</h1>
+      <h1>{{funnyPhrase}}</h1>
       <p>Qual seu nível hoje?</p>
     </div>
     <div class="nivel">
-      <div class="button button-default" [ngClass]="{'button-selected': storage.isBeginner}" (click)="storage.setLevel('beginner')">
+      <div class="button button-default" [ngClass]="{'button-selected': storage.isBeginner(data?.level)}" (click)="data.level = 'beginner'">
         Iniciante / Um frango
       </div>
-      <div class="button button-default" [ngClass]="{'button-selected': storage.isIntermediate}" (click)="storage.setLevel('intermediate')">
+      <div class="button button-default" [ngClass]="{'button-selected': storage.isIntermediate(data?.level)}" (click)="data.level = 'intermediate'">
         Intermediário / Me viro bem
       </div>
-      <div class="button button-default" [ngClass]="{'button-selected': storage.isAdvanced}" (click)="storage.setLevel('advanced')">
+      <div class="button button-default" [ngClass]="{'button-selected': storage.isAdvanced(data?.level)}" (click)="data.level = 'advanced'">
         Avançado / Primo do The Rock
       </div>
     </div>
